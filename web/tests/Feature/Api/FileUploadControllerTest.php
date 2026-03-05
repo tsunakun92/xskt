@@ -314,7 +314,7 @@ class FileUploadControllerTest extends TestCase {
             'file_path'   => $filePath,
             'file_type'   => FileMaster::TYPE_IMAGE,
             'file_size'   => 100,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
             'status'      => FileMaster::STATUS_ACTIVE,
         ]);
@@ -346,7 +346,7 @@ class FileUploadControllerTest extends TestCase {
             'file_path'   => 'uploads/test/nonexistent.jpg',
             'file_type'   => FileMaster::TYPE_IMAGE,
             'file_size'   => 100,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
             'status'      => FileMaster::STATUS_ACTIVE,
         ]);

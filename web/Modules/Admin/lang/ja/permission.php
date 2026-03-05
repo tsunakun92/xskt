@@ -31,9 +31,7 @@ return [
     'specific_permissions' => [
         'changelog.index' => '変更履歴を見る',
         'admin'           => 'ダッシュボードアクセス',
-        'crm.module'      => 'CRMモジュールアクセス',
         'admin.module'    => '管理者モジュールアクセス',
-        'hr.module'       => '人事モジュールアクセス',
     ],
 
     // Buttons

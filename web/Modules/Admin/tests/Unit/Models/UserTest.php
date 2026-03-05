@@ -85,7 +85,6 @@ class UserTest extends TestCase {
             'name',
             'email',
             'role_id',
-            'section_id',
             'status',
         ];
 
@@ -539,7 +538,7 @@ class UserTest extends TestCase {
             'name'   => 'Skip',
             'key'    => 'skip.perm',
             'group'  => 'g2',
-            'module' => Permission::MODULE_HR,
+            'module' => Permission::MODULE_API,
             'status' => Permission::STATUS_ACTIVE,
         ]);
 

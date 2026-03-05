@@ -2,8 +2,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "concurrently -n main,admin,api,crm,hr -c green,cyan,magenta,yellow,blue,red \"vite\" \"cd Modules/Admin && vite\" \"cd Modules/Api && vite\" \"cd Modules/Crm && vite\" \"cd Modules/Hr && vite\"",
-        "build": "vite build && cd Modules/Admin && vite build && cd ../Api && vite build && cd ../Crm && vite build && cd ../Hr && vite build"
+        "dev": "concurrently -n main,admin -c green,cyan,magenta,yellow,blue,red \"vite\" \"cd Modules/Admin && vite\"",
+        "build": "vite build && cd Modules/Admin && vite build"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.9",
@@ -22,6 +22,9 @@
         "@fortawesome/fontawesome-free": "^6.7.2",
         "flowbite": "^2.5.2",
         "jquery": "^3.7.1",
-        "puppeteer": "^23.11.1"
+        "puppeteer": "^23.11.1",
+        "filepond": "^4.32.11",
+        "filepond-plugin-file-validate-size": "^2.2.8",
+        "filepond-plugin-image-preview": "^4.6.12"
     }
 }

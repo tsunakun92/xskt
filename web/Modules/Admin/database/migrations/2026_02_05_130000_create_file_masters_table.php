@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('file_path')->comment('File path');
             $table->integer('file_type')->comment('File type (1:image, 2:PDF, 3:Excel, 4:Word, ...)');
             $table->unsignedBigInteger('file_size')->nullable()->comment('File size (bytes)');
-            $table->string('belong_type')->comment('Belong table (e.g. hr_profiles, crm_sections, crm_room_types)');
+            $table->string('belong_type')->comment('Belong table (e.g. users)');
             $table->unsignedBigInteger('belong_id')->comment('Belong ID');
             $table->string('relation_type')->nullable()->comment('Relation type (attachment, thumbnail, etc.)');
             $table->integer('display_order')->default(0)->comment('Display order for sorting');

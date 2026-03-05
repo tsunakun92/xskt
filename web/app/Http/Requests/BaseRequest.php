@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 abstract class BaseRequest extends FormRequest {
     /**
-     * Permission base key, e.g. 'users', 'roles', 'crm.bookings'.
+     * Permission base key, e.g. 'users', 'roles'.
      *
      * @var string
      */

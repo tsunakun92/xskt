@@ -76,13 +76,6 @@ class FileMasterTest extends TestCase {
         $this->assertEquals(4, FileMaster::TYPE_WORD);
     }
 
-    #[Test]
-    public function it_has_correct_belong_type_constants(): void {
-        $this->assertEquals('hr_profiles', FileMaster::BELONG_TYPE_HR_PROFILE);
-        $this->assertEquals('crm_sections', FileMaster::BELONG_TYPE_CRM_SECTION);
-        $this->assertEquals('crm_room_types', FileMaster::BELONG_TYPE_CRM_ROOM_TYPE);
-        $this->assertEquals('crm_customers', FileMaster::BELONG_TYPE_CRM_CUSTOMER);
-    }
 
     #[Test]
     public function it_has_correct_upload_type_constants(): void {
@@ -229,7 +222,7 @@ class FileMasterTest extends TestCase {
             'file_path'   => $filePath,
             'file_type'   => FileMaster::TYPE_IMAGE,
             'file_size'   => 100,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
             'status'      => FileMaster::STATUS_ACTIVE,
         ]);
@@ -252,7 +245,7 @@ class FileMasterTest extends TestCase {
             'file_path'   => 'uploads/test/nonexistent.jpg',
             'file_type'   => FileMaster::TYPE_IMAGE,
             'file_size'   => 100,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
             'status'      => FileMaster::STATUS_ACTIVE,
         ]);
@@ -271,7 +264,7 @@ class FileMasterTest extends TestCase {
             'file_path'   => '',
             'file_type'   => FileMaster::TYPE_IMAGE,
             'file_size'   => 100,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
             'status'      => FileMaster::STATUS_ACTIVE,
         ]);
@@ -289,7 +282,7 @@ class FileMasterTest extends TestCase {
             'file_path'     => 'uploads/test/test.jpg',
             'file_type'     => FileMaster::TYPE_IMAGE,
             'file_size'     => 1024,
-            'belong_type'   => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type'   => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'     => 1,
             'relation_type' => 'thumbnail',
             'status'        => FileMaster::STATUS_ACTIVE,
@@ -302,7 +295,7 @@ class FileMasterTest extends TestCase {
             'file_path'     => 'uploads/test/test.jpg',
             'file_type'     => FileMaster::TYPE_IMAGE,
             'file_size'     => 1024,
-            'belong_type'   => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type'   => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'     => 1,
             'relation_type' => 'thumbnail',
             'status'        => FileMaster::STATUS_ACTIVE,
@@ -316,7 +309,7 @@ class FileMasterTest extends TestCase {
             'file_name'   => 'test.jpg',
             'file_path'   => 'uploads/test/test.jpg',
             'file_type'   => FileMaster::TYPE_IMAGE,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
         ]);
 
@@ -325,7 +318,7 @@ class FileMasterTest extends TestCase {
             'file_name'   => 'test.jpg',
             'file_path'   => 'uploads/test/test.jpg',
             'file_type'   => FileMaster::TYPE_IMAGE,
-            'belong_type' => FileMaster::BELONG_TYPE_CRM_SECTION,
+            'belong_type' => FileMaster::BELONG_TYPE_SECTION,
             'belong_id'   => 1,
         ]);
 

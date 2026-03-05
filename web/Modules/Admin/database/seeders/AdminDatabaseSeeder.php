@@ -4,9 +4,6 @@ namespace Modules\Admin\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Modules\Admin\Database\Seeders\Prd\PrdUserSeeder;
-use Modules\Admin\Database\Seeders\Stg\StgUserSeeder;
-
 class AdminDatabaseSeeder extends Seeder {
     /**
      * Run the database seeds.
@@ -17,6 +14,7 @@ class AdminDatabaseSeeder extends Seeder {
             RoleSeeder::class,
             PermissionSeeder::class,
             RolePermissionSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

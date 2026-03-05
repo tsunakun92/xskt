@@ -25,10 +25,6 @@ class Permission extends AdminModel {
     //-----------------------------------------------------
     const MODULE_ADMIN = 'admin';
 
-    const MODULE_HR    = 'hr';
-
-    const MODULE_CRM   = 'crm';
-
     const MODULE_API   = 'api';
 
     const MODULE_MOBILES = 'mobiles';
@@ -213,8 +209,6 @@ class Permission extends AdminModel {
     public static function getModulesArray($isAddPleaseSelect = true): array {
         $modules = [
             self::MODULE_ADMIN   => 'Admin',
-            self::MODULE_HR      => 'HR',
-            self::MODULE_CRM     => 'CRM',
             self::MODULE_API     => 'API',
             self::MODULE_MOBILES => 'Mobiles',
         ];

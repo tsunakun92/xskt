@@ -31,9 +31,7 @@ return [
     'specific_permissions' => [
         'changelog.index' => 'View Changelog',
         'admin'           => 'Access Dashboard',
-        'crm.module'      => 'Access CRM Module',
         'admin.module'    => 'Access Admin Module',
-        'hr.module'       => 'Access HR Module',
     ],
 
     // Buttons

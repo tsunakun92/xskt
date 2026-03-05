@@ -288,11 +288,6 @@
         {{-- Modal Confirm Action (generic) --}}
         <x-modal.confirm-action-modal />
 
-        {{-- Modal Cancel / Approve / Reject Cancel Booking (CRM staff/admin) --}}
-        <x-modal.cancel-booking-modal />
-        <x-modal.approve-cancel-modal />
-        <x-modal.reject-cancel-modal />
-
         {{-- Include JavaScript --}}
         @include('datatables::components.datatables.script')
     </div>

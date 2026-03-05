@@ -6,8 +6,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Cache;
 
 use Modules\Admin\Database\Seeders\AdminDatabaseSeeder;
-use Modules\Crm\Database\Seeders\CrmDatabaseSeeder;
-use Modules\Hr\Database\Seeders\HrDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder {
     /**
@@ -16,8 +14,6 @@ class DatabaseSeeder extends Seeder {
     public function run(): void {
         $this->call([
             AdminDatabaseSeeder::class,
-            CrmDatabaseSeeder::class,
-            HrDatabaseSeeder::class,
         ]);
 
         // clear cache

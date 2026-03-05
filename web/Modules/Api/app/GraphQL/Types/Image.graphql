@@ -1,7 +1,0 @@
-type Image {
-    id: ID!
-    url: String!
-    order: Int!
-    alt_text: String
-    title: String
-}

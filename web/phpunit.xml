@@ -15,8 +15,6 @@
             <directory>Modules/Admin/tests</directory>
             <directory>Modules/Api/tests</directory>
             <directory>Modules/Logging/tests</directory>
-            <directory>Modules/Crm/tests</directory>
-            <directory>Modules/Hr/tests</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -28,10 +26,6 @@
             <directory>Modules/Api/app/GraphQL/Resolvers/</directory>
             <directory>Modules/Api/app/Utils/</directory>
             <directory>Modules/Logging/app/Utils/</directory>
-            <directory>Modules/Crm/app/Models/</directory>
-            <directory>Modules/Crm/app/Services/</directory>
-            <directory>Modules/Hr/app/Models/</directory>
-            <directory>Modules/Hr/app/Services/</directory>
         </include>
         <exclude>
             <directory>app/Datatables</directory>

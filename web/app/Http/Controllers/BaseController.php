@@ -711,27 +711,6 @@ abstract class BaseController extends Controller {
     }
 
     /**
-     * Get belong type for FileMaster based on model class.
-     * Maps table names to FileMaster belong types for file upload handling.
-     *
-     * @return string|null
-     */
-    protected function getBelongType(): ?string {
-        $modelClass = $this->modelClass;
-        $tableName  = (new $modelClass)->getTable();
-
-        // Map table name to FileMaster belong type
-        $mapping = [
-            'hr_profiles'    => FileMaster::BELONG_TYPE_HR_PROFILE,
-            'crm_sections'   => FileMaster::BELONG_TYPE_CRM_SECTION,
-            'crm_room_types' => FileMaster::BELONG_TYPE_CRM_ROOM_TYPE,
-            'crm_customers'  => FileMaster::BELONG_TYPE_CRM_CUSTOMER,
-        ];
-
-        return $mapping[$tableName] ?? null;
-    }
-
-    /**
      * Handle redirection back with flash messages.
      *
      * @param  bool  $success

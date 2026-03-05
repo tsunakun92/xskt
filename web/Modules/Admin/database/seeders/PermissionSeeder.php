@@ -132,7 +132,7 @@ class PermissionSeeder extends Seeder {
      *
      * @param  string  $group  Group name (usually route prefix)
      * @param  string|null  $key  Full permission key (e.g., users.index)
-     * @return string Module name (admin, hr, crm, api)
+     * @return string Module name (admin, api)
      */
     private static function determineModule(string $group, ?string $key = null): string {
         // Check key first for more specific matching
@@ -140,35 +140,13 @@ class PermissionSeeder extends Seeder {
             if (str_starts_with($key, Permission::MODULE_MOBILES . '.')) {
                 return Permission::MODULE_MOBILES;
             }
-            // Check module prefixes in key
-            if (str_starts_with($key, Permission::MODULE_HR . '.')) {
-                return Permission::MODULE_HR;
-            }
-            if (str_starts_with($key, Permission::MODULE_CRM . '.')) {
-                return Permission::MODULE_CRM;
-            }
             if (str_starts_with($key, Permission::MODULE_API . '.')) {
                 return Permission::MODULE_API;
-            }
-
-            // Check for crm- prefix in key (e.g., crm-bookings.index)
-            if (str_starts_with($key, 'crm-')) {
-                return Permission::MODULE_CRM;
-            }
-
-            // Check for hr- prefix in key
-            if (str_starts_with($key, 'hr-')) {
-                return Permission::MODULE_HR;
             }
 
             // Check for api- prefix in key
             if (str_starts_with($key, 'api-')) {
                 return Permission::MODULE_API;
-            }
-
-            // CRM module resource routes (bookings, customers, sections, rooms)
-            if (preg_match('/^(bookings|customers|sections|rooms)\./', $key)) {
-                return Permission::MODULE_CRM;
             }
         }
 
@@ -177,30 +155,12 @@ class PermissionSeeder extends Seeder {
             return Permission::MODULE_MOBILES;
         }
 
-        if (str_starts_with($group, 'crm-')) {
-            return Permission::MODULE_CRM;
-        }
-        if (str_starts_with($group, 'hr-')) {
-            return Permission::MODULE_HR;
-        }
         if (str_starts_with($group, 'api-')) {
             return Permission::MODULE_API;
         }
 
-        // Check group for exact matches
-        if (in_array($group, [Permission::MODULE_HR, Permission::MODULE_HR . '.profiles', Permission::MODULE_HR . '.employees'])) {
-            return Permission::MODULE_HR;
-        }
-        if (in_array($group, [Permission::MODULE_CRM, Permission::MODULE_CRM . '.contacts', Permission::MODULE_CRM . '.leads'])) {
-            return Permission::MODULE_CRM;
-        }
         if (in_array($group, [Permission::MODULE_API, Permission::MODULE_API . '.tokens'])) {
             return Permission::MODULE_API;
-        }
-
-        // CRM module resource groups (without prefix)
-        if (in_array($group, ['bookings', 'customers', 'sections', 'rooms'])) {
-            return Permission::MODULE_CRM;
         }
 
         // Default to admin

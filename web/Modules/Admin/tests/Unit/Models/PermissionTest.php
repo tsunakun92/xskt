@@ -95,7 +95,7 @@ class PermissionTest extends TestCase {
             'key'    => 'permission.2',
             'group'  => 'group1',
             'status' => Permission::STATUS_ACTIVE,
-            'module' => Permission::MODULE_HR,
+            'module' => Permission::MODULE_ADMIN,
         ]);
 
         Permission::create([
@@ -160,8 +160,7 @@ class PermissionTest extends TestCase {
         $modulesNoSelect = Permission::getModulesArray(false);
         $this->assertArrayNotHasKey('', $modulesNoSelect);
         $this->assertArrayHasKey(Permission::MODULE_ADMIN, $modulesNoSelect);
-        $this->assertArrayHasKey(Permission::MODULE_HR, $modulesNoSelect);
-        $this->assertArrayHasKey(Permission::MODULE_CRM, $modulesNoSelect);
+        $this->assertArrayHasKey(Permission::MODULE_ADMIN, $modulesNoSelect);
         $this->assertArrayHasKey(Permission::MODULE_API, $modulesNoSelect);
     }
 
@@ -212,10 +211,10 @@ class PermissionTest extends TestCase {
         ]);
 
         $perm3 = Permission::create([
-            'name'   => 'Perm HR 1',
-            'key'    => 'perm.hr.1',
+            'name'   => 'Perm Admin 3',
+            'key'    => 'perm.admin.3',
             'group'  => 'group2',
-            'module' => Permission::MODULE_HR,
+            'module' => Permission::MODULE_ADMIN,
             'status' => Permission::STATUS_ACTIVE,
         ]);
 
@@ -234,17 +233,15 @@ class PermissionTest extends TestCase {
         $this->assertArrayHasKey(Permission::MODULE_ADMIN, $grouped);
         $this->assertArrayHasKey('group1', $grouped[Permission::MODULE_ADMIN]);
         $this->assertCount(2, $grouped[Permission::MODULE_ADMIN]['group1']);
-        $this->assertArrayNotHasKey(Permission::MODULE_HR, $grouped);
 
-        // Filter with HR and no module permissions
+        // Filter with second admin permission and no module permissions
         $filteredKeys = [$perm3->key, $perm4->key];
         $grouped      = Permission::groupByModuleGroupFiltered($filteredKeys);
 
-        $this->assertArrayHasKey(Permission::MODULE_HR, $grouped);
-        $this->assertArrayHasKey('group2', $grouped[Permission::MODULE_HR]);
+        $this->assertArrayHasKey(Permission::MODULE_ADMIN, $grouped);
+        $this->assertArrayHasKey('group2', $grouped[Permission::MODULE_ADMIN]);
         $this->assertArrayHasKey('', $grouped);
         $this->assertArrayHasKey('group3', $grouped['']);
-        $this->assertArrayNotHasKey(Permission::MODULE_ADMIN, $grouped);
 
         // Filter with empty array
         $grouped = Permission::groupByModuleGroupFiltered([]);
@@ -272,28 +269,18 @@ class PermissionTest extends TestCase {
         ]);
 
         Permission::create([
-            'name'   => 'Perm HR 1',
-            'key'    => 'perm.hr.1',
+            'name'   => 'Perm Admin 3',
+            'key'    => 'perm.admin.3',
             'group'  => 'group2',
-            'module' => Permission::MODULE_HR,
+            'module' => Permission::MODULE_ADMIN,
             'status' => Permission::STATUS_ACTIVE,
         ]);
 
-        Permission::create([
-            'name'   => 'Perm CRM 1',
-            'key'    => 'perm.crm.1',
-            'group'  => 'group3',
-            'module' => Permission::MODULE_CRM,
-            'status' => Permission::STATUS_ACTIVE,
-        ]);
-
-        // Filter with admin and HR permissions
-        $filteredKeys    = ['perm.admin.1', 'perm.hr.1'];
+        // Filter with admin permissions
+        $filteredKeys    = ['perm.admin.1', 'perm.admin.3'];
         $filteredModules = Permission::getModulesArrayFiltered($filteredKeys, false);
 
         $this->assertArrayHasKey(Permission::MODULE_ADMIN, $filteredModules);
-        $this->assertArrayHasKey(Permission::MODULE_HR, $filteredModules);
-        $this->assertArrayNotHasKey(Permission::MODULE_CRM, $filteredModules);
         $this->assertArrayNotHasKey(Permission::MODULE_API, $filteredModules);
 
         // Filter with only admin permissions
@@ -308,12 +295,11 @@ class PermissionTest extends TestCase {
         $this->assertEmpty($filteredModules);
 
         // Filter with isAddPleaseSelect = true
-        $filteredKeys    = ['perm.admin.1', 'perm.hr.1'];
+        $filteredKeys    = ['perm.admin.1', 'perm.admin.3'];
         $filteredModules = Permission::getModulesArrayFiltered($filteredKeys, true);
 
         $this->assertArrayHasKey('', $filteredModules);
         $this->assertArrayHasKey(Permission::MODULE_ADMIN, $filteredModules);
-        $this->assertArrayHasKey(Permission::MODULE_HR, $filteredModules);
     }
 
     #[Test]

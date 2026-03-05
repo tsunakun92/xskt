@@ -1,4 +1,0 @@
-type CustomerHome {
-    sections: [Section!]
-    user_data: UserData
-}

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
  * @property string $file_path File path
  * @property int $file_type File type (1:image, 2:PDF, 3:Excel, 4:Word, ...)
  * @property int|null $file_size File size (bytes)
- * @property string $belong_type Belong table (e.g. hr_profiles, crm_sections, crm_room_types)
+ * @property string $belong_type Belong table (e.g. profiles, sections, room_types)
  * @property int $belong_id Belong ID
  * @property string|null $relation_type Relation type (attachment, thumbnail, etc.)
  * @property int $display_order Display order for sorting
@@ -39,17 +39,17 @@ class FileMaster extends AdminModel {
     /** File type Word */
     public const TYPE_WORD = 4;
 
-    /** Belong type: HR profile */
-    public const BELONG_TYPE_HR_PROFILE = 'hr_profiles';
+    /** Belong type: profile */
+    public const BELONG_TYPE_PROFILE = 'profiles';
 
-    /** Belong type: CRM section */
-    public const BELONG_TYPE_CRM_SECTION = 'crm_sections';
+    /** Belong type: section */
+    public const BELONG_TYPE_SECTION = 'sections';
 
-    /** Belong type: CRM room type */
-    public const BELONG_TYPE_CRM_ROOM_TYPE = 'crm_room_types';
+    /** Belong type: room type */
+    public const BELONG_TYPE_ROOM_TYPE = 'room_types';
 
-    /** Belong type: CRM customer */
-    public const BELONG_TYPE_CRM_CUSTOMER = 'crm_customers';
+    /** Belong type: customer */
+    public const BELONG_TYPE_CUSTOMER = 'customers';
 
     /** Upload type: Image */
     public const UPLOAD_TYPE_IMAGE = 'image';

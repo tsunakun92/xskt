@@ -32,7 +32,7 @@ class FileMasterHelper {
     /**
      * Store uploaded files and create FileMaster records.
      *
-     * @param  string  $belongType  Belong table name (e.g. hr_profiles, crm_sections, crm_room_types)
+     * @param  string  $belongType  Belong table name (e.g. profiles, sections, room_types)
      * @param  int  $belongId  Belong record ID
      * @param  array<int, UploadedFile>  $uploadedFiles  Uploaded files
      * @param  string|null  $relationType  Optional relation type (attachment, thumbnail, etc.)
@@ -241,7 +241,7 @@ class FileMasterHelper {
      * Move file from temporary storage to permanent storage and create FileMaster record.
      *
      * @param  string  $tmpFilename  Temporary filename
-     * @param  string  $belongType  Belong table name (e.g. hr_profiles, crm_sections)
+     * @param  string  $belongType  Belong table name (e.g. profiles, sections)
      * @param  int  $belongId  Belong record ID
      * @param  string|null  $relationType  Optional relation type (attachment, thumbnail, etc.)
      * @return FileMaster

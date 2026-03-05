@@ -11,10 +11,6 @@ use Modules\Admin\Services\Contracts\RoleServiceInterface;
 use Modules\Admin\Services\Contracts\UserServiceInterface;
 use Modules\Admin\Services\RoleService;
 use Modules\Admin\Services\UserService;
-use Modules\Crm\Services\Contracts\CrmBookingServiceInterface;
-use Modules\Crm\Services\Contracts\CrmRoomTypeServiceInterface;
-use Modules\Crm\Services\CrmBookingService;
-use Modules\Crm\Services\CrmRoomTypeService;
 
 /**
  * Application service provider.
@@ -63,16 +59,6 @@ class AppServiceProvider extends ServiceProvider {
         $this->app->singleton(
             RoleServiceInterface::class,
             RoleService::class
-        );
-
-        $this->app->singleton(
-            CrmBookingServiceInterface::class,
-            CrmBookingService::class
-        );
-
-        $this->app->singleton(
-            CrmRoomTypeServiceInterface::class,
-            CrmRoomTypeService::class
         );
     }
 

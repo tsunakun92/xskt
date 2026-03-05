@@ -23,9 +23,6 @@ use App\Models\BaseModel;
 use App\Utils\DateTimeExt;
 use App\Utils\DomainConst;
 use Modules\Admin\Database\Factories\UserFactory;
-use Modules\Crm\Models\CrmCustomer;
-use Modules\Crm\Models\CrmSection;
-use Modules\Hr\Models\HrProfile;
 use Modules\Logging\Utils\LogHandler;
 
 /**
@@ -37,7 +34,6 @@ use Modules\Logging\Utils\LogHandler;
  * @property string $password
  * @property string $username
  * @property int $role_id
- * @property int|null $section_id
  * @property int $status
  * @property \Carbon\Carbon $email_verified_at
  * @property \Carbon\Carbon|null $last_date_login
@@ -49,14 +45,8 @@ use Modules\Logging\Utils\LogHandler;
  *
  * Relationships
  * @property Role $rRole Role object
- * @property HrProfile|null $rProfile Profile object
- * @property CrmCustomer|null $rCustomer Customer object
  * @property \Illuminate\Database\Eloquent\Collection|Permission[] $rPermissions Permission objects
  * @property \Illuminate\Database\Eloquent\Collection|Setting[] $rSettings Setting objects
- * @property CrmSection|null $rCurrentSection Current section object
- * @property \Illuminate\Database\Eloquent\Collection|CrmSection[] $rAssignedSections Assigned sections
- * @property \Illuminate\Database\Eloquent\Collection|Role[] $rAssignedRoles Assigned roles
- * @property \Illuminate\Database\Eloquent\Collection|OneMany[] $rOneMany OneMany records
  */
 class User extends AdminModel implements
     AuthenticatableContract,
@@ -84,7 +74,6 @@ class User extends AdminModel implements
         'name',
         'email',
         'role_id',
-        'section_id',
         'status',
     ];
 
@@ -250,9 +239,7 @@ class User extends AdminModel implements
         $fields['email']['type']         = 'email';
         $fields['password']['type']      = 'password';
         $fields['role_id']['type']       = 'select';
-        $fields['role_id']['options']    = Role::getAsDropdown();
-        $fields['section_id']['type']    = 'select';
-        $fields['section_id']['options'] = CrmSection::getAsDropdown();
+        $fields['role_id']['options'] = Role::getAsDropdown();
 
         return $fields;
     }
@@ -341,62 +328,12 @@ class User extends AdminModel implements
     //-----------------------------------------------------
 
     /**
-     * Relationship to Profile
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function rProfile() {
-        return $this->hasOne(HrProfile::class, 'user_id');
-    }
-
-    /**
-     * Relationship to Customer
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function rCustomer() {
-        return $this->hasOne(CrmCustomer::class, 'user_id');
-    }
-
-    /**
      * Relationship to Role
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function rRole() {
         return $this->belongsTo(Role::class, 'role_id');
-    }
-
-    /**
-     * Get user profile based on role
-     * Returns CrmCustomer for customers, HrProfile for staff
-     *
-     * @return CrmCustomer|HrProfile|null
-     */
-    public function getUserProfile() {
-        // Load role if not already loaded
-        if (!$this->relationLoaded('rRole')) {
-            $this->load('rRole');
-        }
-
-        $role = $this->rRole;
-
-        // Check if user is a customer
-        if ($role && $role->code === Role::ROLE_CUSTOMER_CODE) {
-            // Return CrmCustomer for customers
-            if (!$this->relationLoaded('rCustomer')) {
-                $this->load('rCustomer');
-            }
-
-            return $this->rCustomer;
-        }
-
-        // Return HrProfile for staff
-        if (!$this->relationLoaded('rProfile')) {
-            $this->load('rProfile');
-        }
-
-        return $this->rProfile;
     }
 
     /**
@@ -416,48 +353,6 @@ class User extends AdminModel implements
     public function rSettings() {
         return $this->belongsToMany(Setting::class, 'user_settings', 'user_id', 'setting_id')
             ->withPivot('value');
-    }
-
-    /**
-     * Relationship to current section
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function rCurrentSection() {
-        return $this->belongsTo(CrmSection::class, 'section_id');
-    }
-
-    /**
-     * Relationship to assigned sections via one_many
-     *
-     * @return BelongsToMany
-     */
-    public function rAssignedSections() {
-        return $this->belongsToMany(CrmSection::class, 'one_many', 'one_id', 'many_id')
-            ->wherePivot('type', OneMany::TYPE_USER_SECTION)
-            ->wherePivot('status', self::STATUS_ACTIVE)
-            ->withTimestamps();
-    }
-
-    /**
-     * Relationship to assigned roles via one_many
-     *
-     * @return BelongsToMany
-     */
-    public function rAssignedRoles() {
-        return $this->belongsToMany(Role::class, 'one_many', 'one_id', 'many_id')
-            ->wherePivot('type', OneMany::TYPE_USER_ROLE)
-            ->wherePivot('status', self::STATUS_ACTIVE)
-            ->withTimestamps();
-    }
-
-    /**
-     * Relationship to OneMany records
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function rOneMany() {
-        return $this->hasMany(OneMany::class, 'one_id');
     }
 
     //-----------------------------------------------------
