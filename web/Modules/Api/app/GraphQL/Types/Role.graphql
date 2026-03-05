@@ -1,0 +1,8 @@
+type Role {
+    id: ID!
+    name: String!
+    code: String!
+    status: Int!
+    users: [User!] @hasMany(relation: "rUsers")
+}
+

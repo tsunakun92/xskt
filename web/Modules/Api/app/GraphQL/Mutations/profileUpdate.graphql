@@ -1,0 +1,36 @@
+extend type Mutation {
+    profile_update(
+        first_name: String
+        last_name: String
+        kana_first_name: String
+        kana_last_name: String
+        phone_number: String
+        address: String
+        postal_code: String
+        ward: String
+        chome: String
+        ban: String
+        go: String
+        building: String
+        room: String
+        latitude: Float
+        longitude: Float
+        gender: Int
+        birthday: String
+        type: Int
+        company_id: Int
+        version: String!
+        platform: String!
+    ): ProfileUpdateResponse!
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\ProfileUpdateResolver@update"
+        )
+}
+
+type ProfileUpdateResponse {
+    status: Int!
+    message: String!
+    data: Profile
+}
+

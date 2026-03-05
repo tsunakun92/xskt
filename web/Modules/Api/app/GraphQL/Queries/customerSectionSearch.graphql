@@ -1,0 +1,24 @@
+extend type Query {
+    customer_section_search(
+        page: Int
+        limit: Int
+        address: String
+        type_id: Int
+        sort_by: String
+        order: String
+        version: String!
+        platform: String!
+    ): CustomerSectionSearchResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CustomerSectionSearchResolver@search"
+        )
+}
+
+type CustomerSectionSearchResponse {
+    status: Int!
+    message: String!
+    data: [Section!]
+    paginatorInfo: PaginatorInfo
+}
+

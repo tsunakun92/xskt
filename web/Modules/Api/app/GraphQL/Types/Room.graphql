@@ -1,0 +1,7 @@
+type Room {
+    id: ID!
+    name: String!
+    code: String!
+    type_id: Int!
+    status: Int!
+}

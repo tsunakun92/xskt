@@ -1,0 +1,15 @@
+type RoomType {
+    id: ID!
+    name: String!
+    code: String!
+    section_id: Int!
+    description: String
+    price: Float
+    bed_count: Int
+    max_guests: Int
+    area: Float
+    amenities: [String!]! @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\RoomTypeResolver@amenities")
+    status: Int!
+    images: [Image!]! @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\RoomTypeResolver@images")
+}
+

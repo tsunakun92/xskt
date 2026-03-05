@@ -1,0 +1,24 @@
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+/public/vendor/
+
+# Logs
+*.log
+
+# Cache
+.phpunit.result.cache
+

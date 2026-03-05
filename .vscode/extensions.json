@@ -1,0 +1,31 @@
+{
+    "recommendations": [
+        // PHP Development
+        "bmewburn.vscode-intelephense-client",
+
+        // Laravel & Blade
+        "shufo.vscode-blade-formatter",
+        "onecentlin.laravel-blade",
+        "onecentlin.laravel5-snippets",
+        "codingyu.laravel-goto-view",
+        "ctf0.laravel-goto-controller",
+        "erlangparasu.goto-route-controller-laravel",
+        "naoray.laravel-goto-components",
+        "pgl.laravel-jump-controller",
+
+        // Code Formatting & Linting
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "DavidAnson.vscode-markdownlint",
+        "open-southeners.laravel-pint",
+
+        // HTML/CSS Development
+        "formulahendry.auto-close-tag",
+
+        // Visual Enhancements
+        "pkief.material-icon-theme",
+
+        // Spell Checking
+        "streetsidesoftware.code-spell-checker"
+    ]
+}

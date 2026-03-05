@@ -1,0 +1,9 @@
+/* Flowbite styles */
+@import "flowbite";
+/* Font Awesome styles */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+/* Tailwind styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

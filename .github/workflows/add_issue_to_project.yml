@@ -1,0 +1,31 @@
+name: Add issue project
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issue to project (routing)
+    runs-on: ubuntu-latest
+    steps:
+      # If label includes "app" OR title contains "[app]" -> Citrine_App (view project id 24)
+      - name: Add to Citrine_App project
+        if: |
+          contains(join(github.event.issue.labels.*.name, ','), 'app') ||
+          contains(github.event.issue.title, '[app]')
+        uses: actions/add-to-project@v0.3.0
+        with:
+          project-url: https://github.com/users/bisync/projects/1/views/24
+          github-token: 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
+
+      # Otherwise -> Citrine_BE (view project id 20)
+      - name: Add to Citrine_BE project
+        if: |
+          !(contains(join(github.event.issue.labels.*.name, ','), 'app') ||
+            contains(github.event.issue.title, '[app]'))
+        uses: actions/add-to-project@v0.3.0
+        with:
+          project-url: https://github.com/users/bisync/projects/1/views/20
+          github-token: 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

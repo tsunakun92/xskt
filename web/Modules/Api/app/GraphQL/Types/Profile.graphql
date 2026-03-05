@@ -1,0 +1,23 @@
+type Profile {
+    id: ID!
+    user_id: Int!
+    first_name: String
+    last_name: String
+    kana_first_name: String
+    kana_last_name: String
+    fullname: String! @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\ProfileResolver@fullname")
+    email: String @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\ProfileResolver@email")
+    phone_number: String @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\ProfileResolver@phoneNumber")
+    postal_code: String
+    ward: String
+    full_address: String
+    birthday: String
+    code: String!
+    address: String
+    gender: Int
+    company_id: Int @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\ProfileResolver@companyId")
+    status: Int!
+    company: Company @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\ProfileResolver@company")
+    user: User! @belongsTo(relation: "rUser")
+}
+

@@ -1,0 +1,16 @@
+extend type Mutation {
+    verify_otp(
+        email: String!
+        otp: String!
+        type: Int!
+        version: String!
+        platform: String!
+    ): VerifyOtpResponse
+        @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\VerifyOtpResolver@verifyOtp")
+}
+
+type VerifyOtpResponse {
+    status: Int!
+    message: String!
+}
+

@@ -1,0 +1,11 @@
+type Setting {
+    id: ID!
+    key: String!
+    value: String!
+    description: String
+    user_flag: Int!
+    status: Int!
+    created_at: String
+    updated_at: String
+}
+

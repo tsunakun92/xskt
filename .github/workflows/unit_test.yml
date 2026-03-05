@@ -1,0 +1,132 @@
+name: Unit test
+
+on:
+    push:
+        branches: ["main_11", "main"]
+    pull_request:
+        branches: ["main_11", "main"]
+    workflow_dispatch:
+
+jobs:
+    tests:
+        name: PHP ${{ matrix.php-version }}-mysql-${{ matrix.mysql-version }}
+        env:
+            extensions: curl, intl, pdo, pdo_mysql
+            key: cache-v1
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os:
+                    - ubuntu-latest
+                php-version:
+                    - 8.4
+                mysql-version:
+                    - latest
+        services:
+            mysql:
+                image: mysql:${{ matrix.mysql-version }}
+                env:
+                    MYSQL_ROOT_PASSWORD: root
+                    MYSQL_DATABASE: base
+                    MYSQL_USER: homestead
+                    MYSQL_PASSWORD: secret
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+        steps:
+            - name: 1. Checkout Code
+              uses: actions/checkout@v3
+
+            - name: 2. Setup PHP with Extensions
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-version }}
+                  extensions: ${{ env.extensions }}
+                  ini-values: date.timezone='UTC'
+                  coverage: xdebug
+
+            - name: 3. Install Composer Dependencies
+              working-directory: ./web
+              run: |
+                  mkdir -p storage/framework/{sessions,views,cache}
+                  mkdir -p bootstrap/cache
+                  chmod -R 775 storage bootstrap/cache
+                  composer install --no-progress --prefer-dist --optimize-autoloader
+
+            - name: 3.1. Lint (check format)
+              working-directory: ./web
+              run: composer lint
+
+            - name: 4. Verify MySQL Connection
+              run: |
+                  mysql --version
+                  sudo apt-get update
+                  sudo apt-get install -y mysql-client
+                  mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uhomestead -psecret -e "SHOW DATABASES"
+
+            - name: 5. Setup Environment
+              working-directory: ./web
+              run: cp .env.example .env
+
+
+            - name: 6. Run Migrations
+              working-directory: ./web
+              run: |
+                  php artisan migrate --seed
+                  php artisan migrate --seed --env=testing
+
+            - name: 7. Run Tests
+              working-directory: ./web
+              run: |
+                  mkdir -p storage/test-coverage
+                  chmod -R 775 storage/test-coverage
+                  php artisan test --coverage --coverage-text=storage/test-coverage/coverage.txt
+
+            - name: 8. Coverage Report
+              working-directory: ./web
+              run: |
+                  if [ -f storage/test-coverage/coverage.txt ]; then
+                      echo -e "\033[36mCoverage Report\033[0m"
+                      awk '/Summary|Classes|Methods|Lines|App|Modules\\/' storage/test-coverage/coverage.txt | while read -r line; do
+                          # Trường hợp "Methods: ( 0/ 0)" hoặc "Lines: ( 0/ 0)"
+                          if echo "$line" | grep -qE "Methods: +\( +0/ +0\)" || echo "$line" | grep -qE "Lines: +\( +0/ +0\)"; then
+                              echo -e "\033[42;30m$line\033[0m" # Nền xanh lá, chữ đen
+
+                          # Trường hợp "Methods: 0.00%" hoặc "Lines: 0.00%"
+                          elif echo "$line" | grep -qE "Methods: +0\.00%" || echo "$line" | grep -qE "Lines: +0\.00%"; then
+                              echo -e "\033[41;30m$line\033[0m" # Nền đỏ, chữ đen
+
+                          # Trường hợp "Classes:"
+                          elif echo "$line" | grep -qE "Classes: +[0-4][0-9]\.[0-9]+%"; then
+                              echo -e "\033[41;30m$line\033[0m" # Nền đỏ, chữ đen
+                          elif echo "$line" | grep -qE "Classes: +[5-8][0-9]\.[0-9]+%"; then
+                              echo -e "\033[43;30m$line\033[0m" # Nền vàng, chữ đen
+                          elif echo "$line" | grep -qE "Classes: +(100\.00%|9[0-9]\.[0-9]+%)"; then
+                              echo -e "\033[42;30m$line\033[0m" # Nền xanh lá, chữ đen
+
+                          # Trường hợp "Lines:"
+                          elif echo "$line" | grep -qE "Lines: +[0-4][0-9]\.[0-9]+%"; then
+                              echo -e "\033[41;30m$line\033[0m" # Nền đỏ, chữ đen
+                          elif echo "$line" | grep -qE "Lines: +[5-8][0-9]\.[0-9]+%"; then
+                              echo -e "\033[43;30m$line\033[0m" # Nền vàng, chữ đen
+                          elif echo "$line" | grep -qE "Lines: +(100\.00%|9[0-9]\.[0-9]+%)"; then
+                              echo -e "\033[42;30m$line\033[0m" # Nền xanh lá, chữ đen
+
+                          # Trường hợp "Methods"
+                          elif echo "$line" | grep -qE "Methods: +(100\.00%|9[1-9]\.[0-9]+%)"; then
+                              echo -e "\033[42;30m$line\033[0m" # Nền xanh lá, chữ đen
+                          elif echo "$line" | grep -qE "Methods: +[5-8][0-9]\.[0-9]+%"; then
+                              echo -e "\033[43;30m$line\033[0m" # Nền vàng, chữ đen
+                          elif echo "$line" | grep -qE "Methods: +[0-4][0-9]\.[0-9]+%"; then
+                              echo -e "\033[41;30m$line\033[0m" # Nền đỏ, chữ đen
+
+                          # Dòng mặc định (không thay đổi màu)
+                          else
+                              echo "$line"
+                          fi
+                      done
+                  else
+                      echo -e "\033[41;30mError: Coverage file not found.\033[0m"
+                      exit 1
+                  fi

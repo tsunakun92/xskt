@@ -1,0 +1,17 @@
+extend type Mutation {
+    login(
+        username: String!,
+        password: String!,
+        device_token: String!,
+        version: String!,
+        platform: String!
+    ): LoginResponse @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\LoginResolver@login")
+}
+
+type LoginResponse {
+    status: Int!
+    message: String!
+    token: String
+    data: UserData
+}
+

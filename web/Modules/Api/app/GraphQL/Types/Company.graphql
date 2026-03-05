@@ -1,0 +1,14 @@
+type Company {
+    id: ID!
+    code: String!
+    name: String!
+    phone: String
+    email: String
+    open_date: String!
+    address: String!
+    director: Int!
+    status: Int!
+    profiles: [Profile!] @hasMany(relation: "rProfiles")
+    sections: [Section!]! @hasMany(relation: "rSections")
+}
+

@@ -1,0 +1,7 @@
+type Config {
+    language: String!
+    timezone: String!
+    notification_enabled: Boolean!
+    dark_mode: Boolean!
+}
+

@@ -1,0 +1,20 @@
+extend type Mutation {
+    customer_booking_cancel(
+        booking_id: Int!
+        cancel_reason: String
+        version: String!
+        platform: String!
+    ): CustomerBookingCancelResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CustomerBookingCancelResolver@cancel"
+        )
+}
+
+type CustomerBookingCancelResponse {
+    status: Int!
+    message: String!
+    data: Booking
+}
+
+

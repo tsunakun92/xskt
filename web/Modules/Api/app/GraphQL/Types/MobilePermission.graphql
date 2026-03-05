@@ -1,0 +1,6 @@
+type MobilePermission {
+    group: String!
+    actions: [String!]!
+}
+
+

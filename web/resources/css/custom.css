@@ -1,0 +1,374 @@
+/* Simple Table Styles */
+
+/* Default table with border */
+.table-default {
+    @apply w-full border-collapse border border-gray-400 shadow-sm rounded-lg bg-white;
+    table-layout: auto;
+    min-width: 800px;
+}
+
+.table-default th,
+.table-default td {
+    @apply border border-gray-400 px-4 py-2;
+}
+
+.table-default thead th {
+    @apply bg-gray-50 font-medium text-gray-900;
+}
+
+.table-default tbody tr:hover {
+    @apply bg-gray-50;
+}
+
+/* Borderless table */
+.table-borderless {
+    @apply w-full border-collapse border border-gray-100 rounded-md bg-gray-50;
+    table-layout: auto;
+    min-width: 800px;
+}
+
+.table-borderless th,
+.table-borderless td {
+    @apply border border-gray-100 px-4 py-2;
+}
+
+.table-borderless thead th {
+    @apply bg-gray-100 font-medium text-gray-700;
+}
+
+/* Simple table container with scroll */
+.table-container {
+    @apply overflow-x-auto w-full;
+}
+
+/* Dark Mode Support */
+.dark .table-default {
+    @apply border-gray-700 bg-gray-800;
+}
+
+.dark .table-default th,
+.dark .table-default td {
+    @apply border-gray-700 text-gray-100;
+}
+
+.dark .table-default thead th {
+    @apply bg-gray-700 text-gray-100;
+}
+
+.dark .table-default tbody tr:hover {
+    @apply bg-gray-700;
+}
+
+.dark .table-borderless {
+    @apply border-gray-800 bg-gray-900;
+}
+
+.dark .table-borderless th,
+.dark .table-borderless td {
+    @apply border-gray-800 text-gray-100;
+}
+
+.dark .table-borderless thead th {
+    @apply bg-gray-800 text-gray-300;
+}
+
+/* Header options */
+.table-nowrap th,
+.table-nowrap td {
+    white-space: nowrap !important;
+}
+
+/* Tab Button Styles */
+.tab-button {
+    @apply bg-gray-200 text-gray-700 border-gray-300 hover:bg-gray-300;
+}
+
+.tab-button.active {
+    @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700;
+}
+
+.dark .tab-button {
+    @apply bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700;
+}
+
+.dark .tab-button.active {
+    @apply bg-blue-500 text-white border-blue-500 hover:bg-blue-600;
+}
+
+/* Collapsible Columns */
+[data-collapsible-cell] {
+    min-width: 150px;
+    transition: min-width 0.4s ease, max-width 0.4s ease, padding 0.4s ease,
+        opacity 0.3s ease, border-width 0.4s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.col-collapsed {
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    opacity: 0 !important;
+    border-width: 0 !important;
+}
+
+/* Excel-style Dropdown Styles */
+.excel-dropdown-trigger {
+    transition: all 0.15s ease;
+}
+
+.excel-dropdown-trigger:hover {
+    background-color: #f3f4f6;
+}
+
+.excel-dropdown-panel {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sort-option {
+    transition: background-color 0.15s ease;
+}
+
+.sort-option:hover {
+    background-color: #f9fafb;
+}
+
+.filter-checkbox {
+    accent-color: #3b82f6;
+}
+
+.filter-values-container {
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.filter-values-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filter-values-container::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.filter-values-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+.filter-values-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Firefox scrollbar styling */
+.filter-values-container {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+/* Enhanced visual indicators for table column states */
+.excel-dropdown-trigger {
+    position: relative;
+    border: 1px solid transparent;
+}
+
+/* Sorted column indicator */
+.excel-dropdown-trigger.bg-blue-100 {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+/* Filtered column indicator */
+.excel-dropdown-trigger.bg-green-100 {
+    border-color: #10b981;
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1);
+}
+
+/* Both sorted and filtered indicator */
+.excel-dropdown-trigger.bg-purple-100 {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.1);
+}
+
+/* Add subtle animation for state changes */
+.excel-dropdown-trigger {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Enhance hover states */
+.excel-dropdown-trigger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Override uppercase for filter panel content */
+.excel-dropdown-panel {
+    text-transform: none !important;
+}
+
+.excel-dropdown-panel * {
+    text-transform: none !important;
+}
+
+/* Readonly Input Styles */
+input[readonly],
+textarea[readonly],
+select[readonly] {
+    @apply bg-gray-100 text-gray-700 cursor-not-allowed;
+    background-color: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+}
+
+input[readonly]:focus,
+textarea[readonly]:focus,
+select[readonly]:focus {
+    @apply ring-gray-300 border-gray-300;
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(209, 213, 219, 0.5);
+}
+
+/* Dark mode support for readonly inputs */
+.dark input[readonly],
+.dark textarea[readonly],
+.dark select[readonly] {
+    @apply bg-gray-800 text-gray-400 cursor-not-allowed;
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+.dark input[readonly]:focus,
+.dark textarea[readonly]:focus,
+.dark select[readonly]:focus {
+    @apply ring-gray-600 border-gray-600;
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(75, 85, 99, 0.5);
+}
+
+/* Disabled inputs (similar styling but more muted) */
+input:disabled,
+textarea:disabled,
+select:disabled {
+    @apply bg-gray-50 text-gray-500 cursor-not-allowed opacity-60;
+}
+
+.dark input:disabled,
+.dark textarea:disabled,
+.dark select:disabled {
+    @apply bg-gray-900 text-gray-600 cursor-not-allowed opacity-60;
+}
+
+/* Time Input Styles */
+input[type="time"].time-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+}
+
+input[type="time"].time-input::-moz-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.filepond--credits {
+    display: none !important;
+}
+
+/* JSON and GraphQL Display Styles */
+.json-display,
+.graphql-display {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.json-display code {
+    color: #e06c75;
+}
+
+.json-display .token.string {
+    color: #98c379;
+}
+
+.json-display .token.number {
+    color: #d19a66;
+}
+
+.json-display .token.boolean {
+    color: #56b6c2;
+}
+
+.json-display .token.null {
+    color: #c678dd;
+}
+
+.json-display .token.property {
+    color: #e06c75;
+}
+
+.json-display .token.punctuation {
+    color: #abb2bf;
+}
+
+/* GraphQL syntax highlighting */
+.graphql-display code {
+    color: #abb2bf;
+}
+
+.graphql-display .token.keyword {
+    color: #c678dd;
+}
+
+.graphql-display .token.string {
+    color: #98c379;
+}
+
+.graphql-display .token.number {
+    color: #d19a66;
+}
+
+.graphql-display .token.punctuation {
+    color: #abb2bf;
+}
+
+.graphql-display .token.operator {
+    color: #56b6c2;
+}
+
+.graphql-display .token.function {
+    color: #61afef;
+}
+
+.graphql-display .token.property {
+    color: #e06c75;
+}
+
+/* Flex gap utilities for legacy layouts */
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}

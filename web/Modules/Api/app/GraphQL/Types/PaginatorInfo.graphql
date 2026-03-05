@@ -1,0 +1,7 @@
+type PaginatorInfo {
+    total: Int!
+    currentPage: Int!
+    lastPage: Int!
+    perPage: Int!
+}
+

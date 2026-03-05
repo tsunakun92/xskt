@@ -1,0 +1,43 @@
+extend type Query {
+    customer_booking_history(
+        page: Int
+        limit: Int
+        status: Int
+        date_from: String
+        date_to: String
+        sort_by: String
+        order: String
+        version: String!
+        platform: String!
+    ): CustomerBookingHistoryResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CustomerBookingHistoryResolver@search"
+        )
+}
+
+type CustomerBookingHistoryResponse {
+    status: Int!
+    message: String!
+    data: [BookingHistory!]
+    paginatorInfo: PaginatorInfo
+}
+
+type BookingHistory {
+    id: Int!
+    code: String
+    status: Int
+    start: String
+    end: String
+    check_in_at: String
+    check_out_at: String
+    guest_count: GuestCount
+    total_price: Float
+    section_name: String
+    room_details: String
+}
+
+type GuestCount {
+    adults: Int
+    children: Int
+}

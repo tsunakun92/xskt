@@ -1,0 +1,18 @@
+extend type Query {
+    customer_home(
+        version: String!
+        platform: String!
+    ): CustomerHomeResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CustomerHomeResolver@home"
+        )
+}
+
+type CustomerHomeResponse {
+    status: Int!
+    message: String!
+    data: CustomerHome
+}
+
+

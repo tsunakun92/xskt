@@ -1,0 +1,11 @@
+{
+    "name": "Logging",
+    "alias": "logging",
+    "description": "Comprehensive logging system with UI dashboard",
+    "keywords": ["logging", "logs", "monitoring"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Logging\\Providers\\LoggingServiceProvider"
+    ],
+    "files": []
+}

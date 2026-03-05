@@ -1,0 +1,16 @@
+type Workshift {
+    id: ID!
+    code: String!
+    name: String!
+    description: String
+    start: String!
+    end: String!
+    company_id: Int!
+    role_id: Int!
+    max_employee_cnt: Int!
+    color: String
+    status: Int!
+    company: Company! @belongsTo(relation: "rCompany")
+    role: Role! @belongsTo(relation: "rRole")
+}
+

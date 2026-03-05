@@ -1,0 +1,33 @@
+{
+  "name": "xsk-crawler",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal XSKT (Viet Nam 3 regions) result crawler using Node.js and MySQL, optimized for simple self-hosted use and future Laravel admin.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "crawl:xsmb": "node src/jobs/crawlXsmbJob.js",
+    "crawl:xsmb:daiphat": "node src/jobs/crawlXsmbDaiPhatJob.js",
+    "crawl:xsmb:az24": "node src/jobs/crawlXsmbAz24Job.js",
+    "crawl:xsmt": "node src/jobs/crawlXsmtJob.js",
+    "crawl:xsmt:az24": "node src/jobs/crawlXsmtAz24Job.js",
+    "crawl:xsmt:daiphat": "node src/jobs/crawlXsmtDaiPhatJob.js",
+    "crawl:xsmn": "node src/jobs/crawlXsmnJob.js",
+    "crawl:xsmn:az24": "node src/jobs/crawlXsmnAz24Job.js",
+    "crawl:xsmn:daiphat": "node src/jobs/crawlXsmnDaiPhatJob.js",
+    "reconcile:xsmb": "node src/jobs/reconcileXsmbJob.js",
+    "reconcile:xsmt": "node src/jobs/reconcileXsmtJob.js",
+    "reconcile:xsmn": "node src/jobs/reconcileXsmnJob.js",
+    "crawl:auto": "node src/jobs/crawlAutoJob.js",
+    "retry:pending": "node src/jobs/retryPendingDraws.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.0",
+    "mysql2": "^3.9.0",
+    "node-cron": "^3.0.3"
+  }
+}
+
+

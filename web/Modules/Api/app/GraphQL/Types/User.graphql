@@ -1,0 +1,13 @@
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    name: String!
+    status: Int!
+    role: Role! @belongsTo(relation: "rRole")
+    profile: Profile @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\UserResolver@getProfile")
+    section_id: Int
+    list_roles: [Role!]! @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\UserResolver@listRoles")
+    list_sections: [Section!]! @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\UserResolver@listSections")
+}
+

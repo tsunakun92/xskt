@@ -1,0 +1,57 @@
+extend type Mutation {
+    company_create(
+        code: String
+        name: String!
+        phone: String!
+        email: String!
+        open_date: String!
+        address: String!
+        director: Int!
+        version: String!
+        platform: String!
+    ): CompanyResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CompanyResolver@createCompany"
+        )
+
+    company_update(
+        company_id: Int!
+        code: String
+        name: String
+        phone: String
+        email: String
+        open_date: String
+        address: String
+        director: Int
+        status: Int
+        version: String!
+        platform: String!
+    ): CompanyResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CompanyResolver@updateCompany"
+        )
+
+    company_delete(
+        company_id: Int!
+        version: String!
+        platform: String!
+    ): CompanyDeleteResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CompanyResolver@deleteCompany"
+        )
+}
+
+type CompanyResponse {
+    status: Int!
+    message: String!
+    data: Company
+}
+
+type CompanyDeleteResponse {
+    status: Int!
+    message: String!
+}
+

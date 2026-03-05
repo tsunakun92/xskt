@@ -1,0 +1,6 @@
+type UserData {
+    user: User!
+    configs: Config!
+    permissions: [MobilePermission!]!
+}
+

@@ -1,0 +1,15 @@
+type WorkRegister {
+    id: ID!
+    name: String!
+    description: String
+    group_id: Int!
+    date: String!
+    shift_id: Int!
+    repeat_cnt: Int!
+    type: Int!
+    employee_id: Int!
+    status: Int!
+    workshift: Workshift! @belongsTo(relation: "rShift")
+    employee: User! @belongsTo(relation: "rEmployee")
+}
+

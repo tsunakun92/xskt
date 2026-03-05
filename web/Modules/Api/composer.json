@@ -1,0 +1,33 @@
+{
+    "name": "nwidart/api",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "require": {
+        "nuwave/lighthouse": "*",
+        "laravel/sanctum": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Api\\": "app/",
+            "Modules\\Api\\Database\\Factories\\": "database/factories/",
+            "Modules\\Api\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Api\\Tests\\": "tests/"
+        }
+    }
+}
+

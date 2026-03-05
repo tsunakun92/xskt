@@ -1,0 +1,14 @@
+extend type Mutation {
+    logout(
+        version: String!,
+        platform: String!
+    ): LogoutResponse
+    @guard
+    @field(resolver: "Modules\\Api\\GraphQL\\Resolvers\\LogoutResolver@logout")
+}
+
+type LogoutResponse {
+    status: Int!
+    message: String!
+}
+

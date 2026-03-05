@@ -1,0 +1,19 @@
+extend type Query {
+    customer_section_info(
+        section_id: Int!
+        version: String!
+        platform: String!
+    ): CustomerSectionInfoResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CustomerSectionInfoResolver@info"
+        )
+}
+
+type CustomerSectionInfoResponse {
+    status: Int!
+    message: String!
+    data: Section
+}
+
+

@@ -1,0 +1,27 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "concurrently -n main,admin,api,crm,hr -c green,cyan,magenta,yellow,blue,red \"vite\" \"cd Modules/Admin && vite\" \"cd Modules/Api && vite\" \"cd Modules/Crm && vite\" \"cd Modules/Hr && vite\"",
+        "build": "vite build && cd Modules/Admin && vite build && cd ../Api && vite build && cd ../Crm && vite build && cd ../Hr && vite build"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.9",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "axios": "^1.7.4",
+        "concurrently": "^9.1.2",
+        "dotenv": "^17.0.1",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.31",
+        "sass": "^1.89.0",
+        "tailwindcss": "^3.1.0",
+        "vite": "^5.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.7.2",
+        "flowbite": "^2.5.2",
+        "jquery": "^3.7.1",
+        "puppeteer": "^23.11.1"
+    }
+}

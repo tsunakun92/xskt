@@ -1,0 +1,39 @@
+extend type Query {
+    company_list(
+        page: Int
+        limit: Int
+        filter: String
+        sort_by: String
+        order: String
+        version: String!
+        platform: String!
+    ): CompanyListResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CompanyResolver@listCompanies"
+        )
+
+    company_view(
+        company_id: ID!
+        version: String!
+        platform: String!
+    ): CompanyResponse
+        @guard
+        @field(
+            resolver: "Modules\\Api\\GraphQL\\Resolvers\\CompanyResolver@viewCompany"
+        )
+}
+
+type CompanyListResponse {
+    status: Int!
+    message: String!
+    data: [Company]
+    paginatorInfo: PaginatorInfo
+}
+
+type CompanyResponse {
+    status: Int!
+    message: String!
+    data: Company
+}
+
