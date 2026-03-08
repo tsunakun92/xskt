@@ -76,7 +76,6 @@ class FileMasterTest extends TestCase {
         $this->assertEquals(4, FileMaster::TYPE_WORD);
     }
 
-
     #[Test]
     public function it_has_correct_upload_type_constants(): void {
         $this->assertEquals('image', FileMaster::UPLOAD_TYPE_IMAGE);

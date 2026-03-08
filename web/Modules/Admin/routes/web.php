@@ -4,11 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Modules\Admin\Http\Controllers\AdminController;
 use Modules\Admin\Http\Controllers\ChangelogController;
-use Modules\Admin\Http\Controllers\MunicipalityController;
 use Modules\Admin\Http\Controllers\PermissionController;
-use Modules\Admin\Http\Controllers\PersonalAccessTokenController;
-use Modules\Admin\Http\Controllers\PostNumberController;
-use Modules\Admin\Http\Controllers\PrefectureController;
 use Modules\Admin\Http\Controllers\RoleController;
 use Modules\Admin\Http\Controllers\SettingController;
 use Modules\Admin\Http\Controllers\UserController;
@@ -57,30 +53,6 @@ Route::prefix('admin')->middleware(['auth', 'web', 'module_permission:admin', 'p
         Route::post('/{id}/setting', [UserController::class, 'updateSetting'])->name("$name.setting");
     });
     Route::resource('users', UserController::class);
-
-    // PrefectureController
-    Route::group(['prefix' => 'prefectures'], function () {
-        $name = 'prefectures';
-    });
-    Route::resource('prefectures', PrefectureController::class);
-
-    // MunicipalityController
-    Route::group(['prefix' => 'municipalities'], function () {
-        $name = 'municipalities';
-    });
-    Route::resource('municipalities', MunicipalityController::class);
-
-    // PostNumberController
-    Route::group(['prefix' => 'post-numbers'], function () {
-        $name = 'post-numbers';
-    });
-    Route::resource('post-numbers', PostNumberController::class);
-
-    // PersonalAccessTokenController
-    Route::group(['prefix' => 'personal-access-tokens'], function () {
-        $name = 'personal-access-tokens';
-    });
-    Route::resource('personal-access-tokens', PersonalAccessTokenController::class);
 
     // ChangelogController
     Route::group(['prefix' => 'changelog'], function () {
