@@ -239,7 +239,7 @@ class User extends AdminModel implements
         $fields['email']['type']         = 'email';
         $fields['password']['type']      = 'password';
         $fields['role_id']['type']       = 'select';
-        $fields['role_id']['options'] = Role::getAsDropdown();
+        $fields['role_id']['options']    = Role::getAsDropdown();
 
         return $fields;
     }

@@ -1,0 +1,9 @@
+{
+    "name": "XSKT",
+    "alias": "xskt",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": ["Modules\\XSKT\\Providers\\XSKTServiceProvider"],
+    "files": []
+}

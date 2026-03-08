@@ -1,5 +1,6 @@
 {
     "Admin": true,
     "Api": true,
-    "Logging": true
+    "Logging": true,
+    "XSKT": true
 }
